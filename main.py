@@ -11,9 +11,9 @@ current_card = {}
 
 
 try:
-    russian_wdf = pandas.read_csv("russian_flash_cards/data/russian_to_learn.csv")
+    russian_wdf = pandas.read_csv("./data/russian_to_learn.csv")
 except FileNotFoundError:
-    russian_wdf = pandas.read_csv("russian_flash_cards/data/russian1500freq.csv")
+    russian_wdf = pandas.read_csv("./data/russian1500freq.csv")
 russian_dict = russian_wdf.to_dict(orient="records")
 
 def new_word():
@@ -33,7 +33,7 @@ def correct_button():
     russian_dict.remove(current_card)
     print(len(russian_dict))
     words_to_learn = pandas.DataFrame(russian_dict)
-    words_to_learn.to_csv("russian_flash_cards/data/russian_to_learn.csv", index=False)
+    words_to_learn.to_csv("./data/russian_to_learn.csv", index=False)
     new_word()
 
 
@@ -57,20 +57,20 @@ flip_timer = window.after(3000,show_english_version)
 
 
 canvas = Canvas(height=800,width=1000, highlightthickness=0,bg=BACKGROUND_COLOR)
-main_foto = PhotoImage(file="russian_flash_cards/images/card_front.png")
+main_foto = PhotoImage(file="./images/card_front.png")
 main_img = canvas.create_image(500,300, image= main_foto)
 top_label = canvas.create_text(500,180, text="Russian",fill="black",font=("Arial", 40, "italic"))
 bottom_label = canvas.create_text(500,300, text="test123",fill="black",font=("Arial", 60, "bold"))
 canvas.place(x=0,y=0)
 
-back_img = PhotoImage(file="russian_flash_cards/images/card_back.png")
+back_img = PhotoImage(file="./images/card_back.png")
 
 #Buttons
-correct_img = PhotoImage(file="russian_flash_cards/images/right.png")
+correct_img = PhotoImage(file="./images/right.png")
 correct_button = Button(image=correct_img, highlightthickness=0,command=correct_button)
 correct_button.place(x=650,y=575)
 
-wrong_img = PhotoImage(file="russian_flash_cards/images/wrong.png")
+wrong_img = PhotoImage(file="./images/wrong.png")
 wrong_button = Button(image=wrong_img, highlightthickness=0,command=new_word)
 wrong_button.place(x=250,y=575)
 
